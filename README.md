@@ -31,6 +31,8 @@ java -jar -i 15,10,20,8,12,16,25 -gui
 
 ### Gui
 
+<img src="https://raw.githubusercontent.com/thiagodnf/tree-data-structure/master/src/main/resources/screenshot.png" />
+
 
 ### Console
 
@@ -44,7 +46,7 @@ java -jar -i 15,10,20,8,12,16,25 -gui
 2018-07-22 20:55:15,457 INFO  (main) [MainClass(run:66)] DFS w/ Inorder:      [8, 10, 12, 15, 16, 20, 25]
 2018-07-22 20:55:15,459 INFO  (main) [MainClass(run:67)] DFS w/ Post-Order:   [8, 12, 10, 16, 25, 20, 15]
 2018-07-22 20:55:15,461 INFO  (main) [MainClass(run:68)] BFS:                 [15, 10, 20, 8, 12, 16, 25]
-```sh
+```
 
 
 
