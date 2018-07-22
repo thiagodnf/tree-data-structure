@@ -1,6 +1,10 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
 
 import thiagodnf.tds.gui.Visualize;
 import thiagodnf.tds.search.BFSSearch;
@@ -14,12 +18,41 @@ public class MainClass {
 	
 	private static final Logger LOGGER = Logger.getLogger(MainClass.class);
 	
+	@Parameter(names = { "-t", "--type" }, description = "The type of the tree")
+	private String type = "BST";
+
+	@Parameter(names = { "-i", "--input" }, description = "The input", required = true)
+	private List<Integer> inputs = new ArrayList<>();
+
+	@Parameter(names = "-gui", description = "Show the visualization")
+	private boolean gui = false;
+
+	@Parameter(names = { "-h", "--help" }, help = true)
+	private boolean help;
+	
 	public static void main(String[] args) {
 		
-		Tree<Integer> tree = new BinarySearchTree<>();
+		MainClass main = new MainClass();
+       
+		JCommander jc = JCommander.newBuilder()
+            .addObject(main)
+            .programName(MainClass.class.getSimpleName())
+            .build();
+		
+		jc.parse(args);
 
-//		tree.add(Arrays.asList(8, 3, 10, 1, 6, 4, 7, 14, 13));
-		tree.add(Arrays.asList(60, 20, 70, 10, 40, 30, 50));
+		if (main.help) {
+			jc.usage();
+		} else {
+			main.run();
+		}
+	}
+	
+	public void run() {
+		
+		Tree<Integer> tree = new BinarySearchTree<Integer>();
+
+		tree.add(inputs);
 		
 		LOGGER.info("---------Information---------------");
 		
@@ -34,6 +67,8 @@ public class MainClass {
 		LOGGER.info(String.format("%-20s %s", "DFS w/ Post-Order: ", new DFSWithPostOrderSearch<Integer>(tree).execute()));
 		LOGGER.info(String.format("%-20s %s", "BFS: ", new BFSSearch<Integer>(tree).execute()));
 		
-		Visualize.show(tree);
+		if (gui) {
+			Visualize.show(tree);
+		}
 	}
 }

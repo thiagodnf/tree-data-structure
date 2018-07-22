@@ -23,6 +23,12 @@
 		</developer>
 	</developers>
 	<dependencies>
+		<!-- JCommander: Library to parse command line parameters -->
+		<dependency>
+			<groupId>com.beust</groupId>
+			<artifactId>jcommander</artifactId>
+			<version>1.72</version>
+		</dependency>
 		<!-- Logging -->
 		<dependency>
 			<groupId>log4j</groupId>
