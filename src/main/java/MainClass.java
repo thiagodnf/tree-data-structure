@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import thiagodnf.tds.gui.Visualize;
 import thiagodnf.tds.search.BFSSearch;
 import thiagodnf.tds.search.DFSWithInorderSearch;
@@ -10,28 +13,28 @@ import thiagodnf.tds.tree.bst.BinarySearchTree;
 
 public class MainClass {
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(MainClass.class);
+	
 	public static void main(String[] args) {
 		
-	
 		Tree<Integer> tree = new BinarySearchTree<>();
 
 //		tree.add(Arrays.asList(8, 3, 10, 1, 6, 4, 7, 14, 13));
 		tree.add(Arrays.asList(60, 20, 70, 10, 40, 30, 50));
 		
-		System.out.println("---------Information---------------");
+		LOGGER.info("---------Information---------------");
 		
-		System.out.printf("%-12s %s\n", "Depth: ", tree.getDepth());
-		System.out.printf("%-12s %s\n", "# of Nodes: ", tree.getNumberOfNodes());
-		System.out.printf("%-12s %s\n", "Leaves: ", tree.getNumberOfLeaves());
+		LOGGER.info(String.format("%-12s %s", "Depth: ", tree.getDepth()));
+		LOGGER.info(String.format("%-12s %s", "# of Nodes: ", tree.getNumberOfNodes()));
+		LOGGER.info(String.format("%-12s %s", "Leaves: ", tree.getNumberOfLeaves()));
 		
-		System.out.println("--------------Search----------------");
+		LOGGER.info("--------------Search----------------");
 		
-		System.out.printf("%-20s %s\n", "DFS w/ Pre-Order: ", new DFSWithPreOrderSearch<Integer>(tree).execute());
-		System.out.printf("%-20s %s\n", "DFS w/ Inorder: ", new DFSWithInorderSearch<Integer>(tree).execute());
-		System.out.printf("%-20s %s\n", "DFS w/ Post-Order: ", new DFSWithPostOrderSearch<Integer>(tree).execute());
-		System.out.printf("%-20s %s\n", "BFS: ", new BFSSearch<Integer>(tree).execute());
+		LOGGER.info(String.format("%-20s %s", "DFS w/ Pre-Order: ", new DFSWithPreOrderSearch<Integer>(tree).execute()));
+		LOGGER.info(String.format("%-20s %s", "DFS w/ Inorder: ", new DFSWithInorderSearch<Integer>(tree).execute()));
+		LOGGER.info(String.format("%-20s %s", "DFS w/ Post-Order: ", new DFSWithPostOrderSearch<Integer>(tree).execute()));
+		LOGGER.info(String.format("%-20s %s", "BFS: ", new BFSSearch<Integer>(tree).execute()));
 		
 		Visualize.show(tree);
 	}
-
 }
