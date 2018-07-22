@@ -1,7 +1,6 @@
 import java.util.Arrays;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import thiagodnf.tds.gui.Visualize;
 import thiagodnf.tds.search.BFSSearch;
@@ -13,7 +12,7 @@ import thiagodnf.tds.tree.bst.BinarySearchTree;
 
 public class MainClass {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(MainClass.class);
+	private static final Logger LOGGER = Logger.getLogger(MainClass.class);
 	
 	public static void main(String[] args) {
 		
