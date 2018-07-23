@@ -1,7 +1,7 @@
 # Tree Data Structure
 Trees as Abstract Data Type in Java
 
-## Tress
+## Available Trees
 
 This project implements the following trees:
 
@@ -42,7 +42,10 @@ And the GUI:
 <img src="https://raw.githubusercontent.com/thiagodnf/tree-data-structure/master/src/main/resources/screenshot-bst.png" />
 
 ## Recursive Descent Tree
+Recursive Descent Parser for a very simple tree grammar. To use this tree, it is necessary use a parse tree generated from http://logictools.org/index.html for building the parse tree. 
 
+For example, if the formula is (p ∨ ¬q) → (r ∧ q),
+then logictools website returns [->,[V,p,[-,q]],[&,r,q]] as parse tree.
 
 The output will be:
 
