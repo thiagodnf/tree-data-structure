@@ -6,14 +6,14 @@ import java.util.List;
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
-public class DFSWithPreOrderSearch extends Search<Integer, Node<Integer>>{
+public class DFSWithPreOrderSearch extends Search<Object, Node<Object>>{
 
 	@Override
-	public List<String> execute(Tree<Integer, Node<Integer>> tree) {
+	public List<String> execute(Tree<Object, Node<Object>> tree) {
 		return inorder(tree.getRoot(), new ArrayList<>());
 	}
 
-	public List<String> inorder(Node<Integer> node, List<String> nodes) {
+	public List<String> inorder(Node<Object> node, List<String> nodes) {
 
 		if (node != null) {
 			nodes.add(node.toString());

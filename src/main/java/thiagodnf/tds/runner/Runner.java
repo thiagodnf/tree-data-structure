@@ -16,7 +16,7 @@ public abstract class Runner<S, T extends Node<S>> {
 	
 	public void run(String input, boolean gui) {
 		
-		Tree<S,T> tree = getTree();
+		Tree tree = getTree();
 		
 		List<S> inputs = parseInput(input);
 		
@@ -35,11 +35,11 @@ public abstract class Runner<S, T extends Node<S>> {
 		
 		LOGGER.info("--------------Search----------------");
 		
-		List<Search<S,T>> searchs = new ArrayList<>();
+		List<Search<Object,Node<Object>>> searchs = new ArrayList<>();
 		
 		appendSearchs(searchs);
 		
-		for(Search<S,T> search : searchs) {
+		for(Search<Object,Node<Object>> search : searchs) {
 			LOGGER.info(String.format("%-20s: %s", search.getShortName(), search.execute(tree)));
 		}
 		
@@ -52,6 +52,6 @@ public abstract class Runner<S, T extends Node<S>> {
 	
 	public abstract List<S> parseInput(String input);
 	
-	public abstract void appendSearchs(List<Search<S,T>> searchs);
+	public abstract void appendSearchs(List<Search<Object,Node<Object>>> searchs);
 
 }

@@ -50,15 +50,19 @@ then logictools website returns [->,[V,p,[-,q]],[&,r,q]] as parse tree.
 The output will be:
 
 ```sh
-2018-07-23 11:05:49,496 INFO  (main) [Runner(run:25)] -------Tree Data Structure---------
-2018-07-23 11:05:49,507 INFO  (main) [Runner(run:27)] Type:  Recursive Descent Tree
-2018-07-23 11:05:49,508 INFO  (main) [Runner(run:28)] Input:  [[->,[V,p,[-,p]],[&,r,q]]]
-2018-07-23 11:05:49,508 INFO  (main) [Runner(run:30)] ---------Information---------------
-2018-07-23 11:05:49,511 INFO  (main) [Runner(run:32)] Depth       : 4
-2018-07-23 11:05:49,512 INFO  (main) [Runner(run:33)] # of Nodes  : 8
-2018-07-23 11:05:49,512 INFO  (main) [Runner(run:34)] # of Leaves : 4
-2018-07-23 11:05:49,512 INFO  (main) [Runner(run:36)] --------------Search----------------
-2018-07-23 11:05:49,516 INFO  (main) [Runner(run:43)] Subformulas         : [p, -p, (p V -p), r, q, (r & q), ((p V -p) -> (r & q))]
+2018-07-23 11:26:44,939 INFO  (main) [Runner(run:25)] -------Tree Data Structure---------
+2018-07-23 11:26:44,948 INFO  (main) [Runner(run:27)] Type:  Recursive Descent Tree
+2018-07-23 11:26:44,948 INFO  (main) [Runner(run:28)] Input:  [[->,[V,p,[-,p]],[&,r,q]]]
+2018-07-23 11:26:44,948 INFO  (main) [Runner(run:30)] ---------Information---------------
+2018-07-23 11:26:44,950 INFO  (main) [Runner(run:32)] Depth       : 4
+2018-07-23 11:26:44,951 INFO  (main) [Runner(run:33)] # of Nodes  : 8
+2018-07-23 11:26:44,951 INFO  (main) [Runner(run:34)] # of Leaves : 4
+2018-07-23 11:26:44,951 INFO  (main) [Runner(run:36)] --------------Search----------------
+2018-07-23 11:26:44,957 INFO  (main) [Runner(run:43)] DFS w/ Pre-Order    : [->, V, p, -, p, &, r, q]
+2018-07-23 11:26:44,957 INFO  (main) [Runner(run:43)] DFS w/ Inorder      : [p, V, p, -, ->, r, &, q]
+2018-07-23 11:26:44,957 INFO  (main) [Runner(run:43)] DFS w/ Post-Order   : [p, p, -, V, r, q, &, ->]
+2018-07-23 11:26:44,958 INFO  (main) [Runner(run:43)] BFS:                : [->, V, &, p, -, r, q, p]
+2018-07-23 11:26:44,958 INFO  (main) [Runner(run:43)] Subformulas         : [p, -p, (p V -p), r, q, (r & q), ((p V -p) -> (r & q))]
 ```
 
 And the GUI:
@@ -87,12 +91,12 @@ Usage: MainClass [options]
 
 This project implements the following search mechanism:
 
-| Search                           | Class                     | Tree | Reference                                                        |
-|----------------------------------|---------------------------|------|------------------------------------------------------------------|
-| Depth-first Search w/ Pre-Order  | DFSWithPreOrderSearch     | All  |                                                                  |
-| Depth-first Search w/ Inorder    | DFSWithInorderOrderSearch | All  |                                                                  |
-| Depth-first Search w/ Post-Order | DFSWithPostOrderSearch    | All  |                                                                  |
-| Breadth-first Search             | BFSSearch                 | All  |                                                                  |
+| Search                           | Class                     | Tree | Reference|
+|----------------------------------|---------------------------|------|-|
+| Depth-first Search w/ Pre-Order  | DFSWithPreOrderSearch     | All  | |
+| Depth-first Search w/ Inorder    | DFSWithInorderOrderSearch | All  | |
+| Depth-first Search w/ Post-Order | DFSWithPostOrderSearch    | All  | |
+| Breadth-first Search             | BFSSearch                 | All  | |
 | Subformulas                      | SubformulasSearch         | RDT  | [1] |
 
 ## References

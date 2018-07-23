@@ -8,10 +8,10 @@ import java.util.Queue;
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
-public class BFSSearch extends Search<Integer, Node<Integer>>{
+public class BFSSearch extends Search<Object, Node<Object>>{
 
 	@Override
-	public List<String> execute(Tree<Integer, Node<Integer>> tree) {
+	public List<String> execute(Tree<Object, Node<Object>> tree) {
 
 		List<String> nodes = new ArrayList<>();
 
@@ -19,13 +19,13 @@ public class BFSSearch extends Search<Integer, Node<Integer>>{
 			return nodes;
 		}
 
-		Queue<Node<Integer>> queue = new LinkedList<>();
+		Queue<Node<Object>> queue = new LinkedList<>();
 
 		queue.add(tree.getRoot());
 
 		while (!queue.isEmpty()) {
 
-			Node<Integer> node = queue.remove();
+			Node<Object> node = queue.remove();
 
 			nodes.add(node.toString());
 

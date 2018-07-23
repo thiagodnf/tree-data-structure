@@ -24,7 +24,7 @@ public class BSTRunner extends Runner<Integer, Node<Integer>> {
 	}
 
 	@Override
-	public void appendSearchs(List<Search<Integer, Node<Integer>>> searchs) {
+	public void appendSearchs(List<Search<Object, Node<Object>>> searchs) {
 		searchs.add(new DFSWithPreOrderSearch());
 		searchs.add(new DFSWithInorderSearch());
 		searchs.add(new DFSWithPostOrderSearch());

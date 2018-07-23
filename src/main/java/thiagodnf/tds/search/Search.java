@@ -7,7 +7,7 @@ import thiagodnf.tds.tree.Tree;
 
 public abstract class Search<S, T extends Node<S>> {
 
-	public abstract List<String> execute(Tree<S, T> tree);
+	public abstract List<String> execute(Tree<S, Node<S>> tree);
 
 	public abstract String getShortName();
 }
