@@ -111,5 +111,10 @@ public class RecursiveDescentTree extends Tree<String, Node<String>> {
 	
 	protected boolean shouldExpand(String value) {
 		return value.startsWith("[") && value.endsWith("]");
+	}
+
+	@Override
+	public String getName() {
+		return "Recursive Descent Tree";
 	}	
 }

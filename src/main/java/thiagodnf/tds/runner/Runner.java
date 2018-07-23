@@ -24,6 +24,7 @@ public abstract class Runner<S, T extends Node<S>> {
 		
 		LOGGER.info("-------Tree Data Structure---------");
 		
+		LOGGER.info(String.format("%-5s %s", "Type: ", tree.getName()));
 		LOGGER.info(String.format("%-5s %s", "Input: ", inputs));
 		
 		LOGGER.info("---------Information---------------");

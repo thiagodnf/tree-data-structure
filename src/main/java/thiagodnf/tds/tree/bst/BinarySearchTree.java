@@ -23,4 +23,8 @@ public class BinarySearchTree extends Tree<Integer, Node<Integer>> {
 		return node;
 	}
 
+	@Override
+	public String getName() {
+		return "Binary Search Tree";
+	}
 }
