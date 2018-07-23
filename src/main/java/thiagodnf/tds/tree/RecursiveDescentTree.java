@@ -1,4 +1,4 @@
-package thiagodnf.tds.tree.rdt;
+package thiagodnf.tds.tree;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.node.StringNode;
-import thiagodnf.tds.tree.Tree;
 
 /**
  * Recursive Descent Parser for a very simple tree grammar. To use this

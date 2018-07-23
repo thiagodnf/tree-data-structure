@@ -10,8 +10,8 @@ import thiagodnf.tds.search.DFSWithInorderSearch;
 import thiagodnf.tds.search.DFSWithPostOrderSearch;
 import thiagodnf.tds.search.DFSWithPreOrderSearch;
 import thiagodnf.tds.search.Search;
+import thiagodnf.tds.tree.BinarySearchTree;
 import thiagodnf.tds.tree.Tree;
-import thiagodnf.tds.tree.bst.BinarySearchTree;
 
 public class BSTRunner extends Runner<Integer, Node<Integer>> {
 

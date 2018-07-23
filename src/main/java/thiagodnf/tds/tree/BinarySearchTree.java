@@ -1,8 +1,7 @@
-package thiagodnf.tds.tree.bst;
+package thiagodnf.tds.tree;
 
 import thiagodnf.tds.node.IntegerNode;
 import thiagodnf.tds.node.Node;
-import thiagodnf.tds.tree.Tree;
 
 public class BinarySearchTree extends Tree<Integer, Node<Integer>> {
 

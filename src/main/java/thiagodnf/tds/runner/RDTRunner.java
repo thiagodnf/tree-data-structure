@@ -10,8 +10,8 @@ import thiagodnf.tds.search.DFSWithPostOrderSearch;
 import thiagodnf.tds.search.DFSWithPreOrderSearch;
 import thiagodnf.tds.search.Search;
 import thiagodnf.tds.search.SubformulasSearch;
+import thiagodnf.tds.tree.RecursiveDescentTree;
 import thiagodnf.tds.tree.Tree;
-import thiagodnf.tds.tree.rdt.RecursiveDescentTree;
 
 public class RDTRunner extends Runner<String, Node<String>> {
 	

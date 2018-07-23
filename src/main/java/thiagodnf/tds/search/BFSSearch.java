@@ -43,6 +43,6 @@ public class BFSSearch extends Search<Object, Node<Object>>{
 	
 	@Override
 	public String getShortName() {
-		return "BFS: ";
+		return "BFS";
 	}
 }
