@@ -1,6 +1,8 @@
 # Tree Data Structure
 Trees as Abstract Data Type in Java
 
+[![Build Status](https://travis-ci.org/thiagodnf/tree-data-structure.svg?branch=master)](https://travis-ci.org/thiagodnf/tree-data-structure)
+
 ## Available Trees
 
 This project implements the following trees:
