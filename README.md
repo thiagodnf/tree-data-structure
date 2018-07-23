@@ -83,6 +83,21 @@ Usage: MainClass [options]
 
 ```
 
+## Search Mechanism
 
+This project implements the following search mechanismo:
 
+| Search                           | Class                     | Tree | Reference                                                        |
+|----------------------------------|---------------------------|------|------------------------------------------------------------------|
+| Depth-first Search w/ Pre-Order  | DFSWithPreOrderSearch     | All  |                                                                  |
+| Depth-first Search w/ Inorder    | DFSWithInorderOrderSearch | All  |                                                                  |
+| Depth-first Search w/ Post-Order | DFSWithPostOrderSearch    | All  |                                                                  |
+| Breadth-first Search             | BFSSearch                 | All  |                                                                  |
+| Subformulas                      | SubformulasSearch         | RDT  |  |
+|                                  |                           |      |                                                                  |
+|                                  |                           |      |                                                                  |
+|                                  |                           |      |                                                                  |
 
+## References
+
+https://www7.in.tum.de/um/courses/logic/SS11/folien/basics-4.pdf
