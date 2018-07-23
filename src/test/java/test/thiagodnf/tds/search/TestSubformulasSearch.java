@@ -23,7 +23,8 @@ public class TestSubformulasSearch {{
 	
 	String[][] suites = new String[][] {
 		{"[->,[V,p,[-,p]],[&,r,q]]", "[p, -p, (p V -p), r, q, (r & q), ((p V -p) -> (r & q))]"},
-		{"[-,[&,[V,[-,A4],A1],A3]]", "[A4, -A4, A1, (-A4 V A1), A3, ((-A4 V A1) & A3), -((-A4 V A1) & A3)]"}
+		{"[-,[&,[V,[-,A4],A1],A3]]", "[A4, -A4, A1, (-A4 V A1), A3, ((-A4 V A1) & A3), -((-A4 V A1) & A3)]"},
+		{"[->,[->,p,[V,q,r]],[&,p,[-,p]]]", "[p, q, r, (q V r), (p -> (q V r)), -p, (p & -p), ((p -> (q V r)) -> (p & -p))]"}
 	};
 	
 	beforeEach(() -> {
