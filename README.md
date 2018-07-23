@@ -43,6 +43,25 @@ And the GUI:
 
 ## Recursive Descent Tree
 
+
+The output will be:
+
+```sh
+2018-07-23 11:05:49,496 INFO  (main) [Runner(run:25)] -------Tree Data Structure---------
+2018-07-23 11:05:49,507 INFO  (main) [Runner(run:27)] Type:  Recursive Descent Tree
+2018-07-23 11:05:49,508 INFO  (main) [Runner(run:28)] Input:  [[->,[V,p,[-,p]],[&,r,q]]]
+2018-07-23 11:05:49,508 INFO  (main) [Runner(run:30)] ---------Information---------------
+2018-07-23 11:05:49,511 INFO  (main) [Runner(run:32)] Depth       : 4
+2018-07-23 11:05:49,512 INFO  (main) [Runner(run:33)] # of Nodes  : 8
+2018-07-23 11:05:49,512 INFO  (main) [Runner(run:34)] # of Leaves : 4
+2018-07-23 11:05:49,512 INFO  (main) [Runner(run:36)] --------------Search----------------
+2018-07-23 11:05:49,516 INFO  (main) [Runner(run:43)] Subformulas         : [p, -p, (p V -p), r, q, (r & q), ((p V -p) -> (r & q))]
+```
+
+And the GUI:
+
+<img src="https://raw.githubusercontent.com/thiagodnf/tree-data-structure/master/src/main/resources/screenshot-rdt.png" />
+
 ## Generic Usage
 
 ```sh
