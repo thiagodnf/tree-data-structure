@@ -7,14 +7,10 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
 import thiagodnf.tds.gui.Visualize;
-import thiagodnf.tds.search.BFSSearch;
-import thiagodnf.tds.search.DFSWithInorderSearch;
-import thiagodnf.tds.search.DFSWithPostOrderSearch;
-import thiagodnf.tds.search.DFSWithPreOrderSearch;
 import thiagodnf.tds.search.SubformulasSearch;
 import thiagodnf.tds.tree.Tree;
-import thiagodnf.tds.tree.bst.BinarySearchTree;
 import thiagodnf.tds.tree.rdt.RecursiveDescentTree;
+import thiagodnf.tds.tree.rdt.StringNode;
 
 public class MainClass {
 	
@@ -54,13 +50,14 @@ public class MainClass {
 		
 		String input = "[->,[V,p,[-,p]],[&,r,q]]";
 		
+		//input = "[&,r,q]";
+		
 		Tree<String> tree = new RecursiveDescentTree();
 		
 		
 		tree.add(input);
 		
-		
-		
+		LOGGER.info(String.format("%-10s %s", "Subformulas: ", new SubformulasSearch<String>(tree).execute()));
 		
 //		
 //		Tree<Integer> tree = new BinarySearchTree<Integer>();

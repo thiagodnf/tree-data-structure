@@ -3,7 +3,7 @@ package thiagodnf.tds.search;
 import java.util.ArrayList;
 import java.util.List;
 
-import thiagodnf.tds.tree.Node;
+import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
 public class DFSWithPreOrderSearch<T> extends Search<T>{
@@ -13,14 +13,14 @@ public class DFSWithPreOrderSearch<T> extends Search<T>{
 	}
 	
 	@Override
-	public List<Node<T>> execute() {
+	public List<String> execute() {
 		return inorder(tree.getRoot(), new ArrayList<>());
 	}
 
-	public List<Node<T>> inorder(Node<T> node, List<Node<T>> nodes) {
+	public List<String> inorder(Node<T> node, List<String> nodes) {
 
 		if (node != null) {
-			nodes.add(node);
+			nodes.add(node.toString());
 		}
 		
 		if (node.hasLeftNode()) {

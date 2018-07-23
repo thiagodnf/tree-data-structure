@@ -1,6 +1,6 @@
 package thiagodnf.tds.tree.rdt;
 
-import thiagodnf.tds.tree.Node;
+import thiagodnf.tds.node.Node;
 
 public class StringNode extends Node<String> {
 

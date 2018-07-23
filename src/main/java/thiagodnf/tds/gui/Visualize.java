@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import thiagodnf.tds.tree.Node;
+import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
 public class Visualize<T> extends JPanel implements ChangeListener {

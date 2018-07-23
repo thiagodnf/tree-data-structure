@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import thiagodnf.tds.tree.Node;
+import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
 public class BFSSearch<T> extends Search<T>{
@@ -15,9 +15,9 @@ public class BFSSearch<T> extends Search<T>{
 	}
 
 	@Override
-	public List<Node<T>> execute() {
+	public List<String> execute() {
 
-		List<Node<T>> nodes = new ArrayList<>();
+		List<String> nodes = new ArrayList<>();
 
 		if (tree.isEmpty()) {
 			return nodes;
@@ -31,7 +31,7 @@ public class BFSSearch<T> extends Search<T>{
 
 			Node<T> node = queue.remove();
 
-			nodes.add(node);
+			nodes.add(node.toString());
 
 			if (node.hasLeftNode()) {
 				queue.add(node.getLeftNode());

@@ -1,4 +1,4 @@
-package thiagodnf.tds.tree;
+package thiagodnf.tds.node;
 
 public abstract class Node<T> implements Comparable<T> {
 	

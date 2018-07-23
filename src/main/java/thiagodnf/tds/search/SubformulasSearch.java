@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import thiagodnf.tds.tree.Node;
+import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
 /**
  * 
- * The subformulas of a formula are the formulas corresponding to the subtrees of its syntax tree.
+ * The subformulas of a formula are the formulas corresponding to the subtrees
+ * of its syntax tree. This is specific for propositional logic
  * 
+ * @author Thiago Ferreira
+ * @since 2018-07-23
+ * @version 1.0.0
  */
 public class SubformulasSearch<T> extends Search<T>{
 
@@ -19,17 +23,16 @@ public class SubformulasSearch<T> extends Search<T>{
 	}
 	
 	@Override
-	public List<Node<T>> execute() {
+	public List<String> execute() {
 		
 		List<String> formulas = new ArrayList<>();
 		
-		inorder(tree.getRoot(), new ArrayList<>(), formulas);
+		parse(tree.getRoot(), new ArrayList<>(), formulas);
 		
-		System.out.println(formulas);
-		return null;
+		return formulas;
 	}
 
-	public String inorder(Node<T> node, List<Node<T>> nodes, List<String> formulas) {
+	public String parse(Node<T> node, List<Node<T>> nodes, List<String> formulas) {
 
 		if (node == null) {
 			return "";
@@ -38,23 +41,24 @@ public class SubformulasSearch<T> extends Search<T>{
 		StringBuffer buffer = new StringBuffer();
 
 		if (Arrays.asList("-").contains(node.toString())) {
+			
 			buffer.append(node.toString());
 
 			if (node.hasLeftNode()) {
-				buffer.append(inorder(node.getLeftNode(), nodes, formulas));
+				buffer.append(parse(node.getLeftNode(), nodes, formulas));
 			}
 		} else if (Arrays.asList("V", "&", "->").contains(node.toString())) {
 
 			buffer.append("(");
 
 			if (node.hasLeftNode()) {
-				buffer.append(inorder(node.getLeftNode(), nodes, formulas));
+				buffer.append(parse(node.getLeftNode(), nodes, formulas));
 			}
 
 			buffer.append(" ").append(node.toString()).append(" ");
 
 			if (node.hasRightNode()) {
-				buffer.append(inorder(node.getRightNode(), nodes, formulas));
+				buffer.append(parse(node.getRightNode(), nodes, formulas));
 			}
 
 			buffer.append(")");

@@ -3,6 +3,8 @@ package thiagodnf.tds.tree;
 import java.util.ArrayList;
 import java.util.List;
 
+import thiagodnf.tds.node.Node;
+
 public abstract class Tree<T> {
 	
 	private Node<T> root;

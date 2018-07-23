@@ -1,6 +1,6 @@
 package thiagodnf.tds.tree.bst;
 
-import thiagodnf.tds.tree.Node;
+import thiagodnf.tds.node.Node;
 
 public class BinarySearchNode<T> extends Node<T> {
 

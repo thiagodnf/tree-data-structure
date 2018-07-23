@@ -2,7 +2,6 @@ package thiagodnf.tds.search;
 
 import java.util.List;
 
-import thiagodnf.tds.tree.Node;
 import thiagodnf.tds.tree.Tree;
 
 public abstract class Search<T> {
@@ -13,5 +12,5 @@ public abstract class Search<T> {
 		this.tree = tree;
 	}
 
-	public abstract List<Node<T>> execute();
+	public abstract List<String> execute();
 }
