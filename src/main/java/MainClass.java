@@ -11,8 +11,10 @@ import thiagodnf.tds.search.BFSSearch;
 import thiagodnf.tds.search.DFSWithInorderSearch;
 import thiagodnf.tds.search.DFSWithPostOrderSearch;
 import thiagodnf.tds.search.DFSWithPreOrderSearch;
+import thiagodnf.tds.search.SubformulasSearch;
 import thiagodnf.tds.tree.Tree;
 import thiagodnf.tds.tree.bst.BinarySearchTree;
+import thiagodnf.tds.tree.rdt.RecursiveDescentTree;
 
 public class MainClass {
 	
@@ -50,25 +52,38 @@ public class MainClass {
 	
 	public void run() {
 		
-		Tree<Integer> tree = new BinarySearchTree<Integer>();
-
-		tree.add(inputs);
+		String input = "[->,[V,p,[-,p]],[&,r,q]]";
 		
-		LOGGER.info("---------Information---------------");
+		Tree<String> tree = new RecursiveDescentTree();
 		
-		LOGGER.info(String.format("%-12s %s", "Depth: ", tree.getDepth()));
-		LOGGER.info(String.format("%-12s %s", "# of Nodes: ", tree.getNumberOfNodes()));
-		LOGGER.info(String.format("%-12s %s", "Leaves: ", tree.getNumberOfLeaves()));
 		
-		LOGGER.info("--------------Search----------------");
+		tree.add(input);
 		
-		LOGGER.info(String.format("%-20s %s", "DFS w/ Pre-Order: ", new DFSWithPreOrderSearch<Integer>(tree).execute()));
-		LOGGER.info(String.format("%-20s %s", "DFS w/ Inorder: ", new DFSWithInorderSearch<Integer>(tree).execute()));
-		LOGGER.info(String.format("%-20s %s", "DFS w/ Post-Order: ", new DFSWithPostOrderSearch<Integer>(tree).execute()));
-		LOGGER.info(String.format("%-20s %s", "BFS: ", new BFSSearch<Integer>(tree).execute()));
 		
-		if (gui) {
+		
+		
+//		
+//		Tree<Integer> tree = new BinarySearchTree<Integer>();
+//
+//		tree.add(inputs);
+//		
+//		LOGGER.info("---------Information---------------");
+//		
+//		LOGGER.info(String.format("%-12s %s", "Depth: ", tree.getDepth()));
+//		LOGGER.info(String.format("%-12s %s", "# of Nodes: ", tree.getNumberOfNodes()));
+//		LOGGER.info(String.format("%-12s %s", "Leaves: ", tree.getNumberOfLeaves()));
+//		
+//		LOGGER.info("--------------Search----------------");
+//		
+//		LOGGER.info(String.format("%-20s %s", "DFS w/ Pre-Order: ", new DFSWithPreOrderSearch<Integer>(tree).execute()));
+//		LOGGER.info(String.format("%-20s %s", "DFS w/ Inorder: ", new DFSWithInorderSearch<Integer>(tree).execute()));
+//		LOGGER.info(String.format("%-20s %s", "DFS w/ Post-Order: ", new DFSWithPostOrderSearch<Integer>(tree).execute()));
+//		LOGGER.info(String.format("%-20s %s", "BFS: ", new BFSSearch<Integer>(tree).execute()));
+//		
+//		if (gui) {
 			Visualize.show(tree);
-		}
+//		}
+			
+		new SubformulasSearch<>(tree).execute();
 	}
 }
