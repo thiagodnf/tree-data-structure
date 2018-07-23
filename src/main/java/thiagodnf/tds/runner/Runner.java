@@ -10,6 +10,7 @@ import thiagodnf.tds.node.Node;
 import thiagodnf.tds.search.Search;
 import thiagodnf.tds.tree.Tree;
 
+@SuppressWarnings({"rawtypes","unchecked"})
 public abstract class Runner<S, T extends Node<S>> {
 	
 	private static final Logger LOGGER = Logger.getLogger(Runner.class);
