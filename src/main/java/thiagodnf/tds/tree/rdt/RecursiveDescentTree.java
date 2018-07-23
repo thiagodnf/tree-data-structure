@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import thiagodnf.tds.node.Node;
+import thiagodnf.tds.node.StringNode;
 import thiagodnf.tds.tree.Tree;
 
 /**
@@ -20,7 +21,7 @@ import thiagodnf.tds.tree.Tree;
  * @version 1.0.0
  *
  */
-public class RecursiveDescentTree extends Tree<String> {
+public class RecursiveDescentTree extends Tree<String, Node<String>> {
 
 	protected Pattern patternThreeForBoth = Pattern.compile("\\[(V|&|->),\\[(.*)\\],\\[(.*)\\]\\]");
 	protected Pattern patternThreeForFirst = Pattern.compile("\\[(V|&|->),\\[(.*)\\],(.*)\\]");

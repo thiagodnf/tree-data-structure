@@ -16,14 +16,10 @@ import thiagodnf.tds.tree.Tree;
  * @since 2018-07-23
  * @version 1.0.0
  */
-public class SubformulasSearch<T> extends Search<T>{
+public class SubformulasSearch extends Search<String, Node<String>>{
 
-	public SubformulasSearch(Tree<T> tree) {
-		super(tree);
-	}
-	
 	@Override
-	public List<String> execute() {
+	public List<String> execute(Tree<String, Node<String>> tree) {
 		
 		List<String> formulas = new ArrayList<>();
 		
@@ -32,7 +28,7 @@ public class SubformulasSearch<T> extends Search<T>{
 		return formulas;
 	}
 
-	public String parse(Node<T> node, List<Node<T>> nodes, List<String> formulas) {
+	public String parse(Node<String> node, List<Node<String>> nodes, List<String> formulas) {
 
 		if (node == null) {
 			return "";
@@ -73,5 +69,10 @@ public class SubformulasSearch<T> extends Search<T>{
 		}
 
 		return formula;
+	}
+
+	@Override
+	public String getShortName() {
+		return "Subformulas";
 	}
 }

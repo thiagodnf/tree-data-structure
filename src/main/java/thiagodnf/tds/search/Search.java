@@ -2,15 +2,12 @@ package thiagodnf.tds.search;
 
 import java.util.List;
 
+import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
-public abstract class Search<T> {
+public abstract class Search<S, T extends Node<S>> {
 
-	protected Tree<T> tree;
+	public abstract List<String> execute(Tree<S, T> tree);
 
-	public Search(Tree<T> tree) {
-		this.tree = tree;
-	}
-
-	public abstract List<String> execute();
+	public abstract String getShortName();
 }

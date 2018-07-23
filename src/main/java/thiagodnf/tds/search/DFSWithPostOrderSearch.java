@@ -6,18 +6,14 @@ import java.util.List;
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
-public class DFSWithPostOrderSearch<T> extends Search<T>{
+public class DFSWithPostOrderSearch extends Search<Integer, Node<Integer>>{
 
-	public DFSWithPostOrderSearch(Tree<T> tree) {
-		super(tree);
-	}
-	
 	@Override
-	public List<String> execute() {
+	public List<String> execute(Tree<Integer, Node<Integer>> tree) {
 		return inorder(tree.getRoot(), new ArrayList<>());
 	}
 
-	public List<String> inorder(Node<T> node, List<String> nodes) {
+	public List<String> inorder(Node<Integer> node, List<String> nodes) {
 
 		if (node.hasLeftNode()) {
 			inorder(node.getLeftNode(), nodes);
@@ -33,5 +29,9 @@ public class DFSWithPostOrderSearch<T> extends Search<T>{
 
 		return nodes;
 	}
-
+	
+	@Override
+	public String getShortName() {
+		return "DFS w/ Post-Order";
+	}
 }

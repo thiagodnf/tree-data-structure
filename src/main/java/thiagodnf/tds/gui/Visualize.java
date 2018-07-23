@@ -17,7 +17,7 @@ import javax.swing.event.ChangeListener;
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
-public class Visualize<T> extends JPanel implements ChangeListener {
+public class Visualize<S, T extends Node<S>> extends JPanel implements ChangeListener {
 
 	private static final long serialVersionUID = 7916390359313167134L;
 
@@ -37,13 +37,13 @@ public class Visualize<T> extends JPanel implements ChangeListener {
 
 	protected static final Font FONT = new Font("Helvetica", Font.PLAIN, 15);
 
-	protected Tree<T> tree;
+	protected Tree<S, T> tree;
 
 	protected double scale = 1.0;
 
 	protected RenderingHints hints;
 
-	public Visualize(Tree<T> tree) {
+	public Visualize(Tree<S, T> tree) {
 		this.tree = tree;
 
 		hints = new RenderingHints(null);
@@ -79,7 +79,7 @@ public class Visualize<T> extends JPanel implements ChangeListener {
 		draw(g2, tree.getRoot(), "NONE", (int) width / 2, marginTop);
 	}
 
-	public void draw(Graphics2D g, Node<T> node, String direction, int parentX, int parentY) {
+	public void draw(Graphics2D g, Node<S> node, String direction, int parentX, int parentY) {
 
 		int x = parentX;
 		int y = parentY;

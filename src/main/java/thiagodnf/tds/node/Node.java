@@ -1,5 +1,18 @@
 package thiagodnf.tds.node;
 
+/**
+ * A node is a structure which may contain a value or condition, or represent a
+ * separate data structure (which could be a tree of its own). Each node in a
+ * tree has zero or more child nodes, which are below it in the tree (by
+ * convention, trees are drawn growing downwards). All nodes should implement
+ * this class
+ * 
+ * @author Thiago Ferreira
+ * @since 2018-07-23
+ * @version 1.0.0
+ *
+ * @param <T> Which information the node store
+ */
 public abstract class Node<T> implements Comparable<T> {
 	
 	protected Node<T> leftNode;

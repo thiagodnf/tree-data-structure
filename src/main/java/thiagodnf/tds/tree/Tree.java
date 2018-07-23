@@ -1,19 +1,28 @@
 package thiagodnf.tds.tree;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import thiagodnf.tds.node.Node;
 
-public abstract class Tree<T> {
+/**
+ * A tree is a widely used abstract data type (ADT) - or data structure
+ * implementing this ADT—that simulates a hierarchical tree structure, with a
+ * root value and subtrees of children with a parent node, represented as a set
+ * of linked nodes. All trees should extend this class
+ * 
+ * @author Thiago Ferreira
+ * @since 2018-07-23
+ * @version 1.0.0
+ */
+public abstract class Tree<S, T extends Node<S>> {
 	
-	private Node<T> root;
+	private T root;
 	
 	public int getNumberOfNodes() {
 		return getNumberOfNodes(getRoot());
 	}
 
-	public int getNumberOfNodes(Node<T> node) {
+	public int getNumberOfNodes(Node<S> node) {
 
 		if (node == null) {
 			return 0;
@@ -29,7 +38,7 @@ public abstract class Tree<T> {
 		return getDepth(getRoot());
 	}
 	
-	public int getDepth(Node<T> node) {
+	public int getDepth(Node<S> node) {
 
 		if (node == null) {
 			return 0;
@@ -47,34 +56,11 @@ public abstract class Tree<T> {
 		}
 	}
 	
-	public List<Node<T>> getDepthFirstSearch() {
-		return getDepthFirstSearch(getRoot(), new ArrayList<>());
-	}
-	
-	public List<Node<T>> getDepthFirstSearch(Node<T> node, List<Node<T>> nodes) {
-
-		if(node == null) {
-			return nodes;
-		}
-		
-		nodes.add(node);
-		
-		if (node.hasLeftNode()) {
-			nodes.addAll(getDepthFirstSearch(node.getLeftNode(), nodes));
-		}
-		
-		if (node.hasRightNode()) {
-			nodes.addAll(getDepthFirstSearch(node.getRightNode(), nodes));
-		}
-		
-		return nodes;
-	}
-	
 	public int getNumberOfLeaves() {
 		return getNumberOfLeaves(getRoot());
 	}
 
-	public int getNumberOfLeaves(Node<T> node) {
+	public int getNumberOfLeaves(Node<S> node) {
 
 		if (node == null) {
 			return 0;
@@ -91,26 +77,26 @@ public abstract class Tree<T> {
 	}
 	
 	public boolean isEmpty() {
-		return root == null;
+		return getRoot() == null;
 	}
 	
-	public void setRoot(Node<T> root) {
+	public void setRoot(T root) {
 		this.root = root;
 	}
 	
-	public Node<T> getRoot() {
+	public T getRoot() {
 		return this.root;
 	}
 	
-	public void add(List<T> values) {
-		for (T value : values) {
+	public void add(List<S> values) {
+		for (S value : values) {
 			add(value);
 		}
 	}
 	
-	public void add(T value) {
+	public void add(S value) {
 		setRoot(add(root, value));
 	}
 	
-	public abstract Node<T> add(Node<T> node, T value);
+	public abstract T add(T node, S value);
 }
