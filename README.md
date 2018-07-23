@@ -93,11 +93,8 @@ This project implements the following search mechanismo:
 | Depth-first Search w/ Inorder    | DFSWithInorderOrderSearch | All  |                                                                  |
 | Depth-first Search w/ Post-Order | DFSWithPostOrderSearch    | All  |                                                                  |
 | Breadth-first Search             | BFSSearch                 | All  |                                                                  |
-| Subformulas                      | SubformulasSearch         | RDT  |  |
-|                                  |                           |      |                                                                  |
-|                                  |                           |      |                                                                  |
-|                                  |                           |      |                                                                  |
+| Subformulas                      | SubformulasSearch         | RDT  | [1] |
 
 ## References
+[1]: https://www7.in.tum.de/um/courses/logic/SS11/folien/basics-4.pdf
 
-https://www7.in.tum.de/um/courses/logic/SS11/folien/basics-4.pdf
