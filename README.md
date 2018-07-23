@@ -85,7 +85,7 @@ Usage: MainClass [options]
 
 ## Search Mechanism
 
-This project implements the following search mechanismo:
+This project implements the following search mechanism:
 
 | Search                           | Class                     | Tree | Reference                                                        |
 |----------------------------------|---------------------------|------|------------------------------------------------------------------|
