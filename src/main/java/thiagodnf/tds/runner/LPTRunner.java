@@ -3,6 +3,7 @@ package thiagodnf.tds.runner;
 import java.util.List;
 
 import thiagodnf.tds.node.Node;
+import thiagodnf.tds.search.LogicToolsSearch;
 import thiagodnf.tds.search.Search;
 import thiagodnf.tds.search.SubformulasSearch;
 import thiagodnf.tds.tree.LogicalParseTree;
@@ -15,6 +16,7 @@ public class LPTRunner extends PTRunner {
 		super.appendSearchs(searchs);
 		
 		searchs.add(new SubformulasSearch());
+		searchs.add(new LogicToolsSearch());
 	}
 
 	@Override
