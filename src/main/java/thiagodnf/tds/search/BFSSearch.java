@@ -27,7 +27,7 @@ public class BFSSearch extends Search<Object, Node<Object>>{
 
 			Node<Object> node = queue.remove();
 
-			nodes.add(String.valueOf(node.getValue()));
+			nodes.add(tree.toString(node));
 
 			if (node.hasLeftNode()) {
 				queue.add(node.getLeftNode());

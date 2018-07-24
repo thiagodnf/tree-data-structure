@@ -103,4 +103,6 @@ public abstract class Tree<S, T extends Node<S>> {
 	public abstract String getName();
 	
 	public abstract List<S> parseInput(String input);
+	
+	public abstract String toString(Node<S> node);
 }

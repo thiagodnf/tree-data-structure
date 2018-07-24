@@ -10,21 +10,21 @@ public class DFSWithPreOrderSearch extends Search<Object, Node<Object>>{
 
 	@Override
 	public List<String> execute(Tree<Object, Node<Object>> tree) {
-		return inorder(tree.getRoot(), new ArrayList<>());
+		return preOrder(tree, tree.getRoot(), new ArrayList<>());
 	}
 
-	public List<String> inorder(Node<Object> node, List<String> nodes) {
+	public List<String> preOrder(Tree<Object, Node<Object>> tree, Node<Object> node, List<String> nodes) {
 
 		if (node != null) {
-			nodes.add(String.valueOf(node.getValue()));
+			nodes.add(tree.toString(node));
 		}
 		
 		if (node.hasLeftNode()) {
-			inorder(node.getLeftNode(), nodes);
+			preOrder(tree, node.getLeftNode(), nodes);
 		}
 
 		if (node.hasRightNode()) {
-			inorder(node.getRightNode(), nodes);
+			preOrder(tree, node.getRightNode(), nodes);
 		}
 
 		return nodes;

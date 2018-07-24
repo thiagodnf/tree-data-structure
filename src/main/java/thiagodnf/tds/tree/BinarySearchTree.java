@@ -38,4 +38,9 @@ public class BinarySearchTree extends Tree<Integer, Node<Integer>> {
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public String toString(Node<Integer> node) {
+		return String.valueOf(node.getValue());
+	}
 }

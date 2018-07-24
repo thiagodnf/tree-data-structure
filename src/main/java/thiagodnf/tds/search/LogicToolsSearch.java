@@ -10,30 +10,30 @@ public class LogicToolsSearch extends Search<Object, Node<Object>>{
 
 	@Override
 	public List<String> execute(Tree<Object, Node<Object>> tree) {
-		return Arrays.asList(append(tree.getRoot()));
+		return Arrays.asList(append(tree, tree.getRoot()));
 	}
 
-	public String append(Node<Object> node) {
+	public String append(Tree<Object, Node<Object>> tree, Node<Object> node) {
 
 		if (node == null) {
 			return "";
 		}
 
 		if (node.isLeaf()) {
-			return String.valueOf(node.getValue());
+			return tree.toString(node);
 		}
 
 		StringBuffer buffer = new StringBuffer();
 
 		buffer.append("[");
-		buffer.append(node.getValue());
+		buffer.append(tree.toString(node));
 
 		if (node.hasLeftNode()) {
-			buffer.append(",").append(append(node.getLeftNode()));
+			buffer.append(",").append(append(tree, node.getLeftNode()));
 		}
 
 		if (node.hasRightNode()) {
-			buffer.append(",").append(append(node.getRightNode()));
+			buffer.append(",").append(append(tree, node.getRightNode()));
 		}
 
 		buffer.append("]");

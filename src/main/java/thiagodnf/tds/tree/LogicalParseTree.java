@@ -61,13 +61,16 @@ public class LogicalParseTree extends ParseTree {
 		value = value.replaceAll("=>", "@");
 		value = value.replaceAll("~", "-");
 		value = value.replaceAll("and", "&");
-		value = value.replaceAll("or", "V");
-		value = value.replaceAll("\\|", "V");
-		value = value.replaceAll("v", "V");
+		value = value.replaceAll("or", "%");
+		value = value.replaceAll("\\|", "%");
+		value = value.replaceAll("v", "%");
+		value = value.replaceAll("V", "%");
+		
+		value = value.replaceAll("\\s+", "");
 		
 		value = String.format("(%s)", value);
 		
-		List<String> elements = Arrays.asList(value.split("\\s*"));
+		List<String> elements = Arrays.asList(value.split(""));
 		
 		Stack<StringNode> operators = new Stack<>();
 		Stack<StringNode> operands = new Stack<>();
@@ -119,7 +122,7 @@ public class LogicalParseTree extends ParseTree {
 	}
 
 	protected boolean isBinaryOperator(String c) {
-		return Arrays.asList("&", "V", "@").contains(c);
+		return Arrays.asList("&", "%", "@").contains(c);
 	}
 	
 	@Override
@@ -135,5 +138,20 @@ public class LogicalParseTree extends ParseTree {
 	@Override
 	public String getName() {
 		return "Logical Parse Tree";
-	}	
+	}
+	
+	@Override
+	public String toString(Node<String> node) {
+		if (node.getValue().compareTo("@") == 0) {
+			return "\u2192";
+		} else if (node.getValue().compareTo("&") == 0) {
+			return "\u2227";
+		} else if (node.getValue().compareTo("%") == 0) {
+			return "\u2228";
+		} else if (node.getValue().compareTo("-") == 0) {
+			return "\u00AC";
+		}
+
+		return node.getValue();
+	}
 }

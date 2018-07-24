@@ -23,12 +23,12 @@ public class SubformulasSearch extends Search<Object, Node<Object>>{
 		
 		List<String> formulas = new ArrayList<>();
 		
-		parse(tree.getRoot(), new ArrayList<>(), formulas);
+		parse(tree, tree.getRoot(), new ArrayList<>(), formulas);
 		
 		return formulas;
 	}
 
-	public String parse(Node<Object> node, List<Node<Object>> nodes, List<String> formulas) {
+	public String parse(Tree<Object, Node<Object>> tree, Node<Object> node, List<Node<Object>> nodes, List<String> formulas) {
 
 		if (node == null) {
 			return "";
@@ -36,30 +36,30 @@ public class SubformulasSearch extends Search<Object, Node<Object>>{
 
 		StringBuffer buffer = new StringBuffer();
 
-		if (Arrays.asList("-").contains(node.toString())) {
+		if (Arrays.asList("\u00AC").contains(tree.toString(node))) {
 			
-			buffer.append(String.valueOf(node.getValue()));
+			buffer.append(tree.toString(node));
 
 			if (node.hasLeftNode()) {
-				buffer.append(parse(node.getLeftNode(), nodes, formulas));
+				buffer.append(parse(tree, node.getLeftNode(), nodes, formulas));
 			}
-		} else if (Arrays.asList("V", "&", "->").contains(node.toString())) {
+		} else if (Arrays.asList("\u2227", "\u2192", "\u2228").contains(tree.toString(node))) {
 
 			buffer.append("(");
 
 			if (node.hasLeftNode()) {
-				buffer.append(parse(node.getLeftNode(), nodes, formulas));
+				buffer.append(parse(tree, node.getLeftNode(), nodes, formulas));
 			}
 
-			buffer.append(" ").append(String.valueOf(node.getValue())).append(" ");
+			buffer.append(" ").append(tree.toString(node)).append(" ");
 
 			if (node.hasRightNode()) {
-				buffer.append(parse(node.getRightNode(), nodes, formulas));
+				buffer.append(parse(tree, node.getRightNode(), nodes, formulas));
 			}
 
 			buffer.append(")");
 		} else {
-			buffer.append(String.valueOf(node.getValue()));
+			buffer.append(tree.toString(node));
 		}
 
 		String formula = buffer.toString();

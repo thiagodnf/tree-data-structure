@@ -155,7 +155,7 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements MouseWhee
 			g.drawOval(x, y, diameter, diameter);
 
 			g.setColor(BLACK);
-			g.drawString(String.valueOf(node.getValue()), x + diameter / 2 - 5, y + diameter / 2 + 5);
+			g.drawString(tree.toString(node), x + diameter / 2 - 5, y + diameter / 2 + 5);
 		}
 
 		if (node.hasLeftNode()) {

@@ -120,4 +120,9 @@ public class ParseTree extends Tree<String, Node<String>> {
 	public List<String> parseInput(String input) {
 		return Arrays.asList(input);
 	}	
+	
+	@Override
+	public String toString(Node<String> node) {
+		return node.getValue();
+	}
 }
