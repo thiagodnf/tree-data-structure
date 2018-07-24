@@ -1,18 +1,20 @@
+
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
 import thiagodnf.tds.runner.BSTRunner;
-import thiagodnf.tds.runner.RDTRunner;
+import thiagodnf.tds.runner.LPTRunner;
+import thiagodnf.tds.runner.PTRunner;
 
 public class MainClass {
 	
-	@Parameter(names = { "-t", "--type" }, description = "The type of the tree. The options are [BST | RDT]")
+	@Parameter(names = { "-t", "--type" }, description = "The type of the tree. The options are [BST | PT | LPT]")
 	private String type = "BST";
 
 	@Parameter(names = { "-i", "--input" }, description = "The input", required = true)
 	private String input;
 
-	@Parameter(names = "-gui", description = "Show the visualization")
+	@Parameter(names = { "-g", "--gui" }, description = "Show the tree visualization")
 	private boolean gui = false;
 
 	@Parameter(names = { "-h", "--help" }, help = true)
@@ -39,10 +41,12 @@ public class MainClass {
 	public void run() {
 		if (type.equalsIgnoreCase("BST")) {
 			new BSTRunner().run(input, gui);
-		} else if (type.equalsIgnoreCase("RDT")) {
-			new RDTRunner().run(input, gui);
+		} else if (type.equalsIgnoreCase("PT")) {
+			new PTRunner().run(input, gui);
+		} else if (type.equalsIgnoreCase("LPT")) {
+			new LPTRunner().run(input, gui);
 		} else {
-			throw new IllegalArgumentException("The type of three is not valid");
+			throw new IllegalArgumentException("The tree type is not valid");
 		}
 	}
 }

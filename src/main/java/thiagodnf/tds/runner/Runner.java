@@ -19,14 +19,14 @@ public abstract class Runner<S, T extends Node<S>> {
 		
 		Tree tree = getTree();
 		
-		List<S> inputs = parseInput(input);
+		List<S> inputs = tree.parseInput(input);
 		
 		tree.add(inputs);
 		
 		LOGGER.info("-------Tree Data Structure---------");
 		
-		LOGGER.info(String.format("%-5s %s", "Type: ", tree.getName()));
-		LOGGER.info(String.format("%-5s %s", "Input: ", inputs));
+		LOGGER.info(String.format("%-11s: %s", "Tree Type: ", tree.getName()));
+		LOGGER.info(String.format("%-11s: %s", "Input: ", inputs));
 		
 		LOGGER.info("---------Information---------------");
 		
@@ -51,8 +51,5 @@ public abstract class Runner<S, T extends Node<S>> {
 	
 	public abstract Tree<S,T> getTree();
 	
-	public abstract List<S> parseInput(String input);
-	
 	public abstract void appendSearchs(List<Search<Object,Node<Object>>> searchs);
-
 }

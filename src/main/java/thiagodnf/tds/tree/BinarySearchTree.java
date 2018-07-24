@@ -1,5 +1,9 @@
 package thiagodnf.tds.tree;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import thiagodnf.tds.node.IntegerNode;
 import thiagodnf.tds.node.Node;
 
@@ -25,5 +29,13 @@ public class BinarySearchTree extends Tree<Integer, Node<Integer>> {
 	@Override
 	public String getName() {
 		return "Binary Search Tree";
+	}
+
+	@Override
+	public List<Integer> parseInput(String input) {
+		return Arrays.asList(input.split(","))
+				.stream()
+				.map(Integer::parseInt)
+				.collect(Collectors.toList());
 	}
 }

@@ -1,23 +1,25 @@
 package thiagodnf.tds.gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.MouseInfo;
 import java.awt.RenderingHints;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.awt.geom.AffineTransform;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
-public class Visualize<S, T extends Node<S>> extends JPanel implements ChangeListener {
+public class Visualize<S, T extends Node<S>> extends JPanel implements MouseWheelListener {
 
 	private static final long serialVersionUID = 7916390359313167134L;
 
@@ -42,30 +44,80 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements ChangeLis
 	protected double scale = 1.0;
 
 	protected RenderingHints hints;
-
+	
+	private double zoomFactor = 1;
+	
+	private double prevZoomFactor = 1;
+	
+	private boolean zoomer;
+	
+	private double xOffset = 0;
+    
+	private double yOffset = 0;
+	
 	public Visualize(Tree<S, T> tree) {
+		
 		this.tree = tree;
 
-		hints = new RenderingHints(null);
-		hints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		hints.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		hints.put(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+		this.hints = new RenderingHints(null);
+		this.hints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		this.hints.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		this.hints.put(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
 		
-		setBackground(Color.WHITE);
+		addMouseWheelListener(this);
 	}
-
+	
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		
+		zoomer = true;
+	    
+		//Zoom in
+	    if (e.getWheelRotation() < 0) {
+	        zoomFactor *= 1.1;
+	        repaint();
+	    }
+	    //Zoom out
+	    if (e.getWheelRotation() > 0) {
+	        zoomFactor /= 1.1;
+	        repaint();
+	    }
+	}	
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
 		
-		
-//		AffineTransform at = g2.getTransform();
-//        at.scale(scale, scale);
-        
-        
+		if (zoomer) {
+			
+			AffineTransform at = new AffineTransform();
 
+            double xRel = MouseInfo.getPointerInfo().getLocation().getX() - getLocationOnScreen().getX();
+            double yRel = MouseInfo.getPointerInfo().getLocation().getY() - getLocationOnScreen().getY();
+
+            double zoomDiv = zoomFactor / prevZoomFactor;
+
+            xOffset = (zoomDiv) * (xOffset) + (1 - zoomDiv) * xRel;
+            yOffset = (zoomDiv) * (yOffset) + (1 - zoomDiv) * yRel;
+            
+            at.translate(xOffset, yOffset);
+            at.scale(zoomFactor, zoomFactor);
+           
+            prevZoomFactor = zoomFactor;
+            
+            g2.transform(at);
+            
+            int w = ((int) (getSize().width*zoomFactor));
+    	    int h = ((int) (getSize().height*zoomFactor));
+    	    
+    	    setPreferredSize(new Dimension(w, h)); 
+            
+            zoomer = false;
+            
+	    }
+		
 		g2.setFont(FONT);
 
 		g2.setRenderingHints(hints);
@@ -103,7 +155,7 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements ChangeLis
 			g.drawOval(x, y, diameter, diameter);
 
 			g.setColor(BLACK);
-			g.drawString(node.toString(), x + diameter / 2 - 5, y + diameter / 2 + 5);
+			g.drawString(String.valueOf(node.getValue()), x + diameter / 2 - 5, y + diameter / 2 + 5);
 		}
 
 		if (node.hasLeftNode()) {
@@ -125,9 +177,10 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements ChangeLis
 				
 				JFrame frame = new JFrame("Visualize");
 
+				frame.getContentPane().add(new JScrollPane(vis));
+				
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.getContentPane().add(new JScrollPane (vis));
-				frame.getContentPane().add(vis.getControl(), "Last");
+				
 				frame.setSize(WIDTH, HEIGHT);
 				// Centralize the jframe
 				frame.setLocationRelativeTo(null);
@@ -135,25 +188,5 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements ChangeLis
 				frame.setVisible(true);
 			}
 		});
-	}
-	
-	private JSlider getControl() {
-        JSlider slider = new JSlider(JSlider.HORIZONTAL, 50, 200, 100);
-        slider.setMajorTickSpacing(50);
-        slider.setMinorTickSpacing(10);
-        slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
-        slider.addChangeListener(this);
-        return slider; 
-    }
-
-	@Override
-	public void stateChanged(ChangeEvent e) {
-		int value = ((JSlider) e.getSource()).getValue();
-		scale = value / 100.0;
-		
-		repaint();
-		revalidate();
-
 	}
 }

@@ -24,7 +24,7 @@ public class DFSWithPostOrderSearch extends Search<Object, Node<Object>>{
 		}
 		
 		if (node != null) {
-			nodes.add(node.toString());
+			nodes.add(String.valueOf(node.getValue()));
 		}
 
 		return nodes;

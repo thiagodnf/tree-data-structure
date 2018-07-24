@@ -38,7 +38,7 @@ public class SubformulasSearch extends Search<Object, Node<Object>>{
 
 		if (Arrays.asList("-").contains(node.toString())) {
 			
-			buffer.append(node.toString());
+			buffer.append(String.valueOf(node.getValue()));
 
 			if (node.hasLeftNode()) {
 				buffer.append(parse(node.getLeftNode(), nodes, formulas));
@@ -51,7 +51,7 @@ public class SubformulasSearch extends Search<Object, Node<Object>>{
 				buffer.append(parse(node.getLeftNode(), nodes, formulas));
 			}
 
-			buffer.append(" ").append(node.toString()).append(" ");
+			buffer.append(" ").append(String.valueOf(node.getValue())).append(" ");
 
 			if (node.hasRightNode()) {
 				buffer.append(parse(node.getRightNode(), nodes, formulas));
@@ -59,7 +59,7 @@ public class SubformulasSearch extends Search<Object, Node<Object>>{
 
 			buffer.append(")");
 		} else {
-			buffer.append(node.toString());
+			buffer.append(String.valueOf(node.getValue()));
 		}
 
 		String formula = buffer.toString();

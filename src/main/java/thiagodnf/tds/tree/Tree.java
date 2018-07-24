@@ -101,4 +101,6 @@ public abstract class Tree<S, T extends Node<S>> {
 	public abstract T add(T node, S value);
 	
 	public abstract String getName();
+	
+	public abstract List<S> parseInput(String input);
 }

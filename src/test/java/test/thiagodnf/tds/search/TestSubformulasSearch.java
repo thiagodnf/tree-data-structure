@@ -12,14 +12,14 @@ import org.junit.runner.RunWith;
 import com.mscharhag.oleaster.runner.OleasterRunner;
 
 import thiagodnf.tds.search.SubformulasSearch;
-import thiagodnf.tds.tree.RecursiveDescentTree;
+import thiagodnf.tds.tree.ParseTree;
 import thiagodnf.tds.tree.Tree;
 
 @RunWith(OleasterRunner.class)
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class TestSubformulasSearch {{
 	
-	Tree tree = new RecursiveDescentTree();
+	Tree tree = new ParseTree();
 	
 	String[][] suites = new String[][] {
 		{"[->,[V,p,[-,p]],[&,r,q]]", "[p, -p, (p V -p), r, q, (r & q), ((p V -p) -> (r & q))]"},

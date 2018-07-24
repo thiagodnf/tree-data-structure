@@ -16,7 +16,7 @@ public class DFSWithPreOrderSearch extends Search<Object, Node<Object>>{
 	public List<String> inorder(Node<Object> node, List<String> nodes) {
 
 		if (node != null) {
-			nodes.add(node.toString());
+			nodes.add(String.valueOf(node.getValue()));
 		}
 		
 		if (node.hasLeftNode()) {
