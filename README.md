@@ -48,9 +48,12 @@ And the GUI:
 
 ## Parse Tree
 
+A parse tree is an ordered, rooted tree that represents the syntactic structure of a string according to some context-free grammar.
 
 
 ### How to use it
+
+If you want to visualize the set (A+B)*(C+D) as a PT, you can use it
 
 ```sh
 $java -jar tree-data-structure -t PT --gui -i  (A+B)*(C+D)
@@ -81,12 +84,15 @@ And the GUI:
 
 ## Logical Parse Tree
 
+A logical parse tree is an ordered, rooted tree that represents the syntactic structure of a string according to some context-free grammar specific for propositional logic. 
+ 
 ### How to use it
+
+If you want to visualize the set (p->(qVr))->(p&~p) as a LPT, you can use it
 
 ```sh
 $java -jar tree-data-structure -t LPT --gui -i (p->(qVr))->(p&~p)
 ```
-
 
 The output will be:
 
