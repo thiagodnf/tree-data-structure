@@ -10,7 +10,8 @@ Trees as Abstract Data Type in Java
 This project implements the following trees:
 
 - [Binary Search Tree (BST)](#binary-search-tree)
-- [Recursive Descent Tree (RDT)](#recursive-descent-tree) 
+- [Parse Tree (PT)](#parse-tree) 
+- [Logical Parse Tree (LPT)](#logical-parse-tree) 
 
 ## Binary Search Tree
 
@@ -18,77 +19,113 @@ Binary search trees (BST), sometimes called ordered or sorted binary trees, are 
 
 ### How to use it
 
-If you want to visualize the set [15, 10, 20, 8, 12, 16, 25] as a BST, you can use it
+If you want to visualize the set [10,8,9,12,14,13] as a BST, you can use it
 
 ```sh
-$java -jar tree-data-structure -t BST -i 15,10,20,8,12,16,25 -gui
+$java -jar tree-data-structure -t BST --gui -i 10,8,9,12,14,13
 ```
 
 The output will be:
 
 ```sh
-2018-07-23 11:01:39,893 INFO  (main) [Runner(run:25)] -------Tree Data Structure---------
-2018-07-23 11:01:39,896 INFO  (main) [Runner(run:27)] Type:  Binary Search Tree
-2018-07-23 11:01:39,897 INFO  (main) [Runner(run:28)] Input:  [15, 10, 20, 8, 12, 16, 25]
-2018-07-23 11:01:39,897 INFO  (main) [Runner(run:30)] ---------Information---------------
-2018-07-23 11:01:39,900 INFO  (main) [Runner(run:32)] Depth       : 3
-2018-07-23 11:01:39,900 INFO  (main) [Runner(run:33)] # of Nodes  : 7
-2018-07-23 11:01:39,900 INFO  (main) [Runner(run:34)] # of Leaves : 4
-2018-07-23 11:01:39,901 INFO  (main) [Runner(run:36)] --------------Search----------------
-2018-07-23 11:01:39,910 INFO  (main) [Runner(run:43)] DFS w/ Pre-Order    : [15, 10, 8, 12, 20, 16, 25]
-2018-07-23 11:01:39,910 INFO  (main) [Runner(run:43)] DFS w/ Inorder      : [8, 10, 12, 15, 16, 20, 25]
-2018-07-23 11:01:39,910 INFO  (main) [Runner(run:43)] DFS w/ Post-Order   : [8, 12, 10, 16, 25, 20, 15]
-2018-07-23 11:01:39,911 INFO  (main) [Runner(run:43)] BFS:                : [15, 10, 20, 8, 12, 16, 25]
+2018-07-24 21:55:13,614 INFO  (main) [Runner(run:26)] -------Tree Data Structure---------
+2018-07-24 21:55:13,616 INFO  (main) [Runner(run:28)] Tree Type: : Binary Search Tree
+2018-07-24 21:55:13,617 INFO  (main) [Runner(run:29)] Input:     : [10, 8, 9, 12, 14, 13]
+2018-07-24 21:55:13,617 INFO  (main) [Runner(run:31)] ---------Information---------------
+2018-07-24 21:55:13,619 INFO  (main) [Runner(run:33)] Depth       : 4
+2018-07-24 21:55:13,619 INFO  (main) [Runner(run:34)] # of Nodes  : 6
+2018-07-24 21:55:13,620 INFO  (main) [Runner(run:35)] # of Leaves : 2
+2018-07-24 21:55:13,620 INFO  (main) [Runner(run:37)] --------------Search----------------
+2018-07-24 21:55:13,629 INFO  (main) [Runner(run:44)] DFS w/ Pre-Order    : [10, 8, 9, 12, 14, 13]
+2018-07-24 21:55:13,630 INFO  (main) [Runner(run:44)] DFS w/ Inorder      : [8, 9, 10, 12, 13, 14]
+2018-07-24 21:55:13,630 INFO  (main) [Runner(run:44)] DFS w/ Post-Order   : [9, 8, 13, 14, 12, 10]
+2018-07-24 21:55:13,631 INFO  (main) [Runner(run:44)] BFS                 : [10, 8, 12, 9, 14, 13]
 ```
 
 And the GUI:
 
 <img src="https://raw.githubusercontent.com/thiagodnf/tree-data-structure/master/src/main/resources/screenshot-bst.png" />
 
-## Recursive Descent Tree
-Recursive Descent Parser for a very simple tree grammar. To use this tree, it is necessary use a parse tree generated from http://logictools.org/index.html for building the parse tree. 
+## Parse Tree
 
-For example, if the formula is (p ∨ ¬q) → (r ∧ q),
-then logictools website returns [->,[V,p,[-,q]],[&,r,q]] as parse tree.
+
+
+### How to use it
+
+```sh
+$java -jar tree-data-structure -t PT --gui -i  (A+B)*(C+D)
+```
+
 
 The output will be:
 
 ```sh
-2018-07-23 11:26:44,939 INFO  (main) [Runner(run:25)] -------Tree Data Structure---------
-2018-07-23 11:26:44,948 INFO  (main) [Runner(run:27)] Type:  Recursive Descent Tree
-2018-07-23 11:26:44,948 INFO  (main) [Runner(run:28)] Input:  [[->,[V,p,[-,p]],[&,r,q]]]
-2018-07-23 11:26:44,948 INFO  (main) [Runner(run:30)] ---------Information---------------
-2018-07-23 11:26:44,950 INFO  (main) [Runner(run:32)] Depth       : 4
-2018-07-23 11:26:44,951 INFO  (main) [Runner(run:33)] # of Nodes  : 8
-2018-07-23 11:26:44,951 INFO  (main) [Runner(run:34)] # of Leaves : 4
-2018-07-23 11:26:44,951 INFO  (main) [Runner(run:36)] --------------Search----------------
-2018-07-23 11:26:44,957 INFO  (main) [Runner(run:43)] DFS w/ Pre-Order    : [->, V, p, -, p, &, r, q]
-2018-07-23 11:26:44,957 INFO  (main) [Runner(run:43)] DFS w/ Inorder      : [p, V, p, -, ->, r, &, q]
-2018-07-23 11:26:44,957 INFO  (main) [Runner(run:43)] DFS w/ Post-Order   : [p, p, -, V, r, q, &, ->]
-2018-07-23 11:26:44,958 INFO  (main) [Runner(run:43)] BFS:                : [->, V, &, p, -, r, q, p]
-2018-07-23 11:26:44,958 INFO  (main) [Runner(run:43)] Subformulas         : [p, -p, (p V -p), r, q, (r & q), ((p V -p) -> (r & q))]
+2018-07-24 22:03:56,478 INFO  (main) [Runner(run:26)] -------Tree Data Structure---------
+2018-07-24 22:03:56,481 INFO  (main) [Runner(run:28)] Tree Type: : Parse Tree
+2018-07-24 22:03:56,482 INFO  (main) [Runner(run:29)] Input:     : [(A+B)*(C+D)]
+2018-07-24 22:03:56,482 INFO  (main) [Runner(run:31)] ---------Information---------------
+2018-07-24 22:03:56,485 INFO  (main) [Runner(run:33)] Depth       : 3
+2018-07-24 22:03:56,485 INFO  (main) [Runner(run:34)] # of Nodes  : 7
+2018-07-24 22:03:56,485 INFO  (main) [Runner(run:35)] # of Leaves : 4
+2018-07-24 22:03:56,486 INFO  (main) [Runner(run:37)] --------------Search----------------
+2018-07-24 22:03:56,496 INFO  (main) [Runner(run:44)] DFS w/ Pre-Order    : [*, +, A, B, +, C, D]
+2018-07-24 22:03:56,497 INFO  (main) [Runner(run:44)] DFS w/ Inorder      : [A, +, B, *, C, +, D]
+2018-07-24 22:03:56,497 INFO  (main) [Runner(run:44)] DFS w/ Post-Order   : [A, B, +, C, D, +, *]
+2018-07-24 22:03:56,497 INFO  (main) [Runner(run:44)] BFS                 : [*, +, +, A, B, C, D]
 ```
 
 And the GUI:
 
-<img src="https://raw.githubusercontent.com/thiagodnf/tree-data-structure/master/src/main/resources/screenshot-rdt.png" />
+<img src="https://raw.githubusercontent.com/thiagodnf/tree-data-structure/master/src/main/resources/screenshot-pt.png" />
+
+
+## Logical Parse Tree
+
+### How to use it
+
+```sh
+$java -jar tree-data-structure -t LPT --gui -i (p->(qVr))->(p&~p)
+```
+
+
+The output will be:
+
+```sh
+2018-07-24 21:58:36,621 INFO  (main) [Runner(run:26)] -------Tree Data Structure---------
+2018-07-24 21:58:36,624 INFO  (main) [Runner(run:28)] Tree Type: : Logical Parse Tree
+2018-07-24 21:58:36,624 INFO  (main) [Runner(run:29)] Input:     : [(p->(qVr))->(p&~p)]
+2018-07-24 21:58:36,625 INFO  (main) [Runner(run:31)] ---------Information---------------
+2018-07-24 21:58:36,627 INFO  (main) [Runner(run:33)] Depth       : 4
+2018-07-24 21:58:36,627 INFO  (main) [Runner(run:34)] # of Nodes  : 10
+2018-07-24 21:58:36,627 INFO  (main) [Runner(run:35)] # of Leaves : 5
+2018-07-24 21:58:36,627 INFO  (main) [Runner(run:37)] --------------Search----------------
+2018-07-24 21:58:36,640 INFO  (main) [Runner(run:44)] DFS w/ Pre-Order    : [→, →, p, ∨, q, r, ∧, p, ¬, p]
+2018-07-24 21:58:36,640 INFO  (main) [Runner(run:44)] DFS w/ Inorder      : [p, →, q, ∨, r, →, p, ∧, p, ¬]
+2018-07-24 21:58:36,640 INFO  (main) [Runner(run:44)] DFS w/ Post-Order   : [p, q, r, ∨, →, p, p, ¬, ∧, →]
+2018-07-24 21:58:36,641 INFO  (main) [Runner(run:44)] BFS                 : [→, →, ∧, p, ∨, p, ¬, q, r, p]
+2018-07-24 21:58:36,641 INFO  (main) [Runner(run:44)] Subformulas         : [p, q, r, (q ∨ r), (p → (q ∨ r)), ¬p, (p ∧ ¬p), ((p → (q ∨ r)) → (p ∧ ¬p))]
+2018-07-24 21:58:36,641 INFO  (main) [Runner(run:44)] LogicTools          : [[→,[→,p,[∨,q,r]],[∧,p,[¬,p]]]]
+```
+
+And the GUI:
+
+<img src="https://raw.githubusercontent.com/thiagodnf/tree-data-structure/master/src/main/resources/screenshot-lpt.png" />
 
 ## Generic Usage
 
 ```sh
 Usage: MainClass [options]
   Options:
+    -g, --gui
+      Show the tree visualization
+      Default: false
     -h, --help
 
   * -i, --input
       The input
     -t, --type
-      The type of the tree. The options are [BST | RDT]
+      The type of the tree. The options are [BST | PT | LPT]
       Default: BST
-    -gui
-      Show the visualization
-      Default: false
-
 ```
 
 ## Search Mechanism
@@ -101,8 +138,10 @@ This project implements the following search mechanism:
 | Depth-first Search w/ Inorder    | DFSWithInorderOrderSearch | All  | |
 | Depth-first Search w/ Post-Order | DFSWithPostOrderSearch    | All  | |
 | Breadth-first Search             | BFSSearch                 | All  | |
-| Subformulas                      | SubformulasSearch         | RDT  | [1] |
+| Subformulas                      | SubformulasSearch         | LPT  | [1] |
+| LogicTools                       | LogicToolsSearch          | LPT  | [2] |
 
 ## References
 [1]: https://www7.in.tum.de/um/courses/logic/SS11/folien/basics-4.pdf
+[2]: http://logictools.org/index.html
 
