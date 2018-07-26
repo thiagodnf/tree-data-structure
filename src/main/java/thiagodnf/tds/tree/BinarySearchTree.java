@@ -19,13 +19,15 @@ public class BinarySearchTree extends Tree<Integer, Node<Integer>> {
 	}
 	
 	@Override
-	public Node<Integer> add(Node<Integer> node, Integer value) {
-
+	public Node<Integer> add(Node<Integer> node, Object value) {
+		
+		Integer val = (Integer) value;
+		
 		if (node == null) {
-			node = new IntegerNode(value);
+			node = new IntegerNode(val);
 		} else {
 
-			if (node.compareTo(value) >= 0) {
+			if (node.compareTo(val) >= 0) {
 				node.setLeftNode(add(node.getLeftNode(), value));
 			} else {
 				node.setRightNode(add(node.getRightNode(), value));
@@ -41,7 +43,7 @@ public class BinarySearchTree extends Tree<Integer, Node<Integer>> {
 	}
 
 	@Override
-	public List<Integer> parseInput(String input) {
+	public List<Object> parseInput(String input) {
 		return Arrays.asList(input.split(","))
 				.stream()
 				.map(Integer::parseInt)

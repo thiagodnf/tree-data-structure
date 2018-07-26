@@ -37,11 +37,13 @@ public class ParseTree extends Tree<String, Node<String>> {
 	}
 	
 	@Override
-	public Node<String> add(Node<String> node, String value) {
-
-		value = String.format("(%s)", value);
+	public Node<String> add(Node<String> node, Object value) {
 		
-		List<String> elements = Arrays.asList(value.split("\\s*"));
+		String val = String.valueOf(value);
+
+		val = String.format("(%s)", val);
+		
+		List<String> elements = Arrays.asList(val.split("\\s*"));
 		
 		Stack<StringNode> operators = new Stack<>();
 		Stack<StringNode> operands = new Stack<>();
@@ -126,7 +128,7 @@ public class ParseTree extends Tree<String, Node<String>> {
 	}
 
 	@Override
-	public List<String> parseInput(String input) {
+	public List<Object> parseInput(String input) {
 		return Arrays.asList(input);
 	}	
 	

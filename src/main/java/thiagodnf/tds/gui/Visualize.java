@@ -130,7 +130,7 @@ public class Visualize<S, T extends Node<S>> extends Canvas {
 
 			// Draw Text
 			g.setColor(tree.getColorTheme().getTextColor());
-			printSimpleString(g, tree.toString(node), diameter, x, y + diameter / 2 + 5);
+			printSimpleString(g, tree.toString((T) node), diameter, x, y + diameter / 2 + 5);
 		}
 	}
 	

@@ -100,13 +100,13 @@ public abstract class Tree<S, T extends Node<S>> {
 		return this.root;
 	}
 	
-	public void add(List<S> values) {
-		for (S value : values) {
+	public void add(List<Object> values) {
+		for (Object value : values) {
 			add(value);
 		}
 	}
 	
-	public void add(S value) {
+	public void add(Object value) {
 		setRoot(add(root, value));
 	}
 	
@@ -118,11 +118,11 @@ public abstract class Tree<S, T extends Node<S>> {
 		this.colorTheme = colorTheme;
 	}
 
-	public abstract T add(T node, S value);
+	public abstract T add(T node, Object value);
 	
 	public abstract String getName();
 	
-	public abstract List<S> parseInput(String input);
+	public abstract List<Object> parseInput(String input);
 	
-	public abstract String toString(Node<S> node);
+	public abstract String toString(T node);
 }

@@ -62,24 +62,26 @@ public class LogicalParseTree extends ParseTree {
 	}
 	
 	@Override
-	public Node<String> add(Node<String> node, String value) {
+	public Node<String> add(Node<String> node, Object value) {
 
+		String val = String.valueOf(value);
+		
 		//Format the formula before parse it
 		
-		value = value.replaceAll("->", "@");
-		value = value.replaceAll("=>", "@");
-		value = value.replaceAll("~", "-");
-		value = value.replaceAll("and", "&");
-		value = value.replaceAll("or", "%");
-		value = value.replaceAll("\\|", "%");
-		value = value.replaceAll("v", "%");
-		value = value.replaceAll("V", "%");
+		val = val.replaceAll("->", "@");
+		val = val.replaceAll("=>", "@");
+		val = val.replaceAll("~", "-");
+		val = val.replaceAll("and", "&");
+		val = val.replaceAll("or", "%");
+		val = val.replaceAll("\\|", "%");
+		val = val.replaceAll("v", "%");
+		val = val.replaceAll("V", "%");
 		
-		value = value.replaceAll("\\s+", "");
+		val = val.replaceAll("\\s+", "");
 		
-		value = String.format("(%s)", value);
+		val = String.format("(%s)", val);
 		
-		List<String> elements = Arrays.asList(value.split(""));
+		List<String> elements = Arrays.asList(val.split(""));
 		
 		Stack<StringNode> operators = new Stack<>();
 		Stack<StringNode> operands = new Stack<>();
