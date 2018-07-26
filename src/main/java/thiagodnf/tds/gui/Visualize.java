@@ -1,5 +1,7 @@
 package thiagodnf.tds.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,14 +14,14 @@ import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
+import thiagodnf.tds.gui.listener.ZoomAndPanListener;
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.tree.Tree;
 
-public class Visualize<S, T extends Node<S>> extends JPanel implements MouseWheelListener {
+public class Visualize<S, T extends Node<S>> extends Canvas {
 
 	private static final long serialVersionUID = 7916390359313167134L;
 
@@ -45,15 +47,9 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements MouseWhee
 
 	protected RenderingHints hints;
 	
-	private double zoomFactor = 1;
+	private boolean init = true;
 	
-	private double prevZoomFactor = 1;
-	
-	private boolean zoomer;
-	
-	private double xOffset = 0;
-    
-	private double yOffset = 0;
+	private ZoomAndPanListener zoomAndPanListener;
 	
 	public Visualize(Tree<S, T> tree) {
 		
@@ -64,71 +60,51 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements MouseWhee
 		this.hints.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		this.hints.put(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
 		
-		addMouseWheelListener(this);
+		this.zoomAndPanListener = new ZoomAndPanListener(this);
+		this.addMouseListener(zoomAndPanListener);
+		this.addMouseMotionListener(zoomAndPanListener);
+		this.addMouseWheelListener(zoomAndPanListener);
 	}
 	
 	@Override
-	public void mouseWheelMoved(MouseWheelEvent e) {
-		
-		zoomer = true;
-	    
-		//Zoom in
-	    if (e.getWheelRotation() < 0) {
-	        zoomFactor *= 1.1;
-	        repaint();
-	    }
-	    //Zoom out
-	    if (e.getWheelRotation() > 0) {
-	        zoomFactor /= 1.1;
-	        repaint();
-	    }
-	}	
+	public Dimension getPreferredSize() {
+		return new Dimension(800, 600);
+	}
 	
 	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-
-		Graphics2D g2 = (Graphics2D) g;
+	public void paint(Graphics graphics) {
 		
-		if (zoomer) {
+		Graphics2D g = (Graphics2D) graphics;
+		
+		Dimension d = getSize();
+		
+		if (init) {
+			// Initialize the viewport by moving the origin to the center of the window,
+			// and inverting the y-axis to point upwards.
+			init = false;
 			
-			AffineTransform at = new AffineTransform();
+			int xc = d.width / 2;
+			int yc = d.height / 2;
 
-            double xRel = MouseInfo.getPointerInfo().getLocation().getX() - getLocationOnScreen().getX();
-            double yRel = MouseInfo.getPointerInfo().getLocation().getY() - getLocationOnScreen().getY();
+			g.translate(xc, yc);
+			g.scale(1, 1);
 
-            double zoomDiv = zoomFactor / prevZoomFactor;
-
-            xOffset = (zoomDiv) * (xOffset) + (1 - zoomDiv) * xRel;
-            yOffset = (zoomDiv) * (yOffset) + (1 - zoomDiv) * yRel;
-            
-            at.translate(xOffset, yOffset);
-            at.scale(zoomFactor, zoomFactor);
-           
-            prevZoomFactor = zoomFactor;
-            
-            g2.transform(at);
-            
-            int w = ((int) (getSize().width*zoomFactor));
-    	    int h = ((int) (getSize().height*zoomFactor));
-    	    
-    	    setPreferredSize(new Dimension(w, h)); 
-            
-            zoomer = false;
-            
-	    }
+			// Save the viewport to be updated by the ZoomAndPanListener
+			zoomAndPanListener.setCoordTransform(g.getTransform());
+		} else {
+			// Restore the viewport after it was updated by the ZoomAndPanListener
+			g.setTransform(zoomAndPanListener.getCoordTransform());
+		}
 		
-		g2.setFont(FONT);
-
-		g2.setRenderingHints(hints);
+		g.setFont(FONT);
 		
-		double width = scale * getSize().width;
-
+		g.setRenderingHints(hints);
+		
 		if (tree.isEmpty()) {
 			return;
 		}
 
-		draw(g2, tree.getRoot(), "NONE", (int) width / 2, marginTop);
+		draw(g, tree.getRoot(), "NONE", -(diameter / 2), -d.height / 2 + marginTop);
 	}
 
 	public void draw(Graphics2D g, Node<S> node, String direction, int parentX, int parentY) {
@@ -147,7 +123,7 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements MouseWhee
 
 		if (node != null) {
 			g.setColor(BLACK);
-			g.drawLine(parentX + 20, parentY - 40, x + 20, y + 20);
+			g.drawLine(parentX + 20, parentY - diameter, x + (diameter / 2), y + (diameter / 2));
 
 			g.setColor(BLUE);
 			g.fillOval(x, y, diameter, diameter);
@@ -155,15 +131,16 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements MouseWhee
 			g.drawOval(x, y, diameter, diameter);
 
 			g.setColor(BLACK);
+			
 			g.drawString(tree.toString(node), x + diameter / 2 - 5, y + diameter / 2 + 5);
 		}
 
 		if (node.hasLeftNode()) {
-			draw(g, node.getLeftNode(), "LEFT", x, y + 80);
+			draw(g, node.getLeftNode(), "LEFT", x, y + (diameter * 2));
 		}
 
 		if (node.hasRightNode()) {
-			draw(g, node.getRightNode(), "RIGHT", x, y + 80);
+			draw(g, node.getRightNode(), "RIGHT", x, y + (diameter * 2));
 		}
 	}
 
@@ -175,17 +152,20 @@ public class Visualize<S, T extends Node<S>> extends JPanel implements MouseWhee
 
 				Visualize vis = new Visualize(tree);
 				
-				JFrame frame = new JFrame("Visualize");
+				JFrame frame = new JFrame(tree.getName());
 
-				frame.getContentPane().add(new JScrollPane(vis));
+				frame.add(vis, BorderLayout.CENTER);
 				
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
-				frame.setSize(WIDTH, HEIGHT);
+				frame.pack();
+				
 				// Centralize the jframe
 				frame.setLocationRelativeTo(null);
 				// Show the jframe
 				frame.setVisible(true);
+				
+				vis.createBufferStrategy(2);
 			}
 		});
 	}
