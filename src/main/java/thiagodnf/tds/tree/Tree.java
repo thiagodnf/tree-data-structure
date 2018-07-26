@@ -2,6 +2,8 @@ package thiagodnf.tds.tree;
 
 import java.util.List;
 
+import thiagodnf.tds.gui.theme.Theme;
+import thiagodnf.tds.gui.theme.custom.BlueTheme;
 import thiagodnf.tds.node.Node;
 
 /**
@@ -17,6 +19,16 @@ import thiagodnf.tds.node.Node;
 public abstract class Tree<S, T extends Node<S>> {
 	
 	private T root;
+	
+	private Theme colorTheme;
+	
+	public Tree(Theme colorTheme) {
+		this.colorTheme = colorTheme;
+	}
+	
+	public Tree() {
+		this(new BlueTheme());
+	}
 	
 	public int getNumberOfNodes() {
 		return getNumberOfNodes(getRoot());
@@ -98,6 +110,14 @@ public abstract class Tree<S, T extends Node<S>> {
 		setRoot(add(root, value));
 	}
 	
+	public Theme getColorTheme() {
+		return colorTheme;
+	}
+
+	public void setColorTheme(Theme colorTheme) {
+		this.colorTheme = colorTheme;
+	}
+
 	public abstract T add(T node, S value);
 	
 	public abstract String getName();

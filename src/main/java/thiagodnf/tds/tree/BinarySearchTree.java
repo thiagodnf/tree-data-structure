@@ -4,11 +4,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import thiagodnf.tds.gui.theme.Theme;
 import thiagodnf.tds.node.IntegerNode;
 import thiagodnf.tds.node.Node;
 
 public class BinarySearchTree extends Tree<Integer, Node<Integer>> {
 
+	public BinarySearchTree(Theme colorTheme) {
+		super(colorTheme);
+	}
+	
+	public BinarySearchTree() {
+		super();
+	}
+	
 	@Override
 	public Node<Integer> add(Node<Integer> node, Integer value) {
 

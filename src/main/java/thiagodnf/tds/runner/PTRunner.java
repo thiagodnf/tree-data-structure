@@ -2,6 +2,7 @@ package thiagodnf.tds.runner;
 
 import java.util.List;
 
+import thiagodnf.tds.gui.theme.custom.GreenTheme;
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.search.BFSSearch;
 import thiagodnf.tds.search.DFSWithInorderSearch;
@@ -23,6 +24,6 @@ public class PTRunner extends Runner<String, Node<String>> {
 
 	@Override
 	public Tree<String, Node<String>> getTree() {
-		return new ParseTree();
+		return new ParseTree(new GreenTheme());
 	}
 }

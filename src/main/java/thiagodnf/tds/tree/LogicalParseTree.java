@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+import thiagodnf.tds.gui.theme.Theme;
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.node.StringNode;
 
@@ -52,6 +53,14 @@ import thiagodnf.tds.node.StringNode;
  */
 public class LogicalParseTree extends ParseTree {
 
+	public LogicalParseTree(Theme colorTheme) {
+		super(colorTheme);
+	}
+	
+	public LogicalParseTree() {
+		super();
+	}
+	
 	@Override
 	public Node<String> add(Node<String> node, String value) {
 

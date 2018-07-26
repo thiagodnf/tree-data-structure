@@ -2,19 +2,13 @@ package thiagodnf.tds.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.MouseInfo;
 import java.awt.RenderingHints;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
-import java.awt.geom.AffineTransform;
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import thiagodnf.tds.gui.listener.ZoomAndPanListener;
@@ -27,23 +21,11 @@ public class Visualize<S, T extends Node<S>> extends Canvas {
 
 	protected static final int marginTop = 20;
 
-	protected static final int WIDTH = 800;
-
-	protected static final int HEIGHT = 600;
-
 	protected static final int diameter = 40;
 
-	protected static final Color BLACK = new Color(67, 67, 72);
-
-	protected static final Color BLUE = new Color(184, 217, 248);
-
-	protected static final Color DARK_BLUE = new Color(113, 178, 242);
-
-	protected static final Font FONT = new Font("Helvetica", Font.PLAIN, 15);
+	protected Font font;
 
 	protected Tree<S, T> tree;
-
-	protected double scale = 1.0;
 
 	protected RenderingHints hints;
 	
@@ -64,6 +46,8 @@ public class Visualize<S, T extends Node<S>> extends Canvas {
 		this.addMouseListener(zoomAndPanListener);
 		this.addMouseMotionListener(zoomAndPanListener);
 		this.addMouseWheelListener(zoomAndPanListener);
+		
+		this.font = tree.getColorTheme().getFont();
 	}
 	
 	@Override
@@ -96,8 +80,7 @@ public class Visualize<S, T extends Node<S>> extends Canvas {
 			g.setTransform(zoomAndPanListener.getCoordTransform());
 		}
 		
-		g.setFont(FONT);
-		
+		g.setFont(font);
 		g.setRenderingHints(hints);
 		
 		if (tree.isEmpty()) {
@@ -116,23 +99,10 @@ public class Visualize<S, T extends Node<S>> extends Canvas {
 			int numberOfNodes = tree.getNumberOfNodes(node.getRightNode()) + 1;
 			x -= numberOfNodes * 80;
 		}
+
 		if (direction.equalsIgnoreCase("RIGHT")) {
 			int numberOfNodes = tree.getNumberOfNodes(node.getLeftNode()) + 1;
 			x += numberOfNodes * 80;
-		}
-
-		if (node != null) {
-			g.setColor(BLACK);
-			g.drawLine(parentX + 20, parentY - diameter, x + (diameter / 2), y + (diameter / 2));
-
-			g.setColor(BLUE);
-			g.fillOval(x, y, diameter, diameter);
-			g.setColor(DARK_BLUE);
-			g.drawOval(x, y, diameter, diameter);
-
-			g.setColor(BLACK);
-			
-			printSimpleString(g, tree.toString(node), diameter, x, y + diameter / 2+5);
 		}
 
 		if (node.hasLeftNode()) {
@@ -141,6 +111,26 @@ public class Visualize<S, T extends Node<S>> extends Canvas {
 
 		if (node.hasRightNode()) {
 			draw(g, node.getRightNode(), "RIGHT", x, y + (diameter * 2));
+		}
+		
+		if (node != null) {
+			// Draw Edge
+			g.setStroke(tree.getColorTheme().getEdgeStroke());
+			g.setColor(tree.getColorTheme().getEdgeColor());
+			g.drawLine(parentX + 20, parentY - (60), x + (diameter / 2), y + (diameter / 2));
+
+			//Draw Node
+			g.setColor(tree.getColorTheme().getNodeFillColor());
+			g.fillOval(x, y, diameter, diameter);
+
+			// Draw Border Node
+			g.setStroke(tree.getColorTheme().getNodeBorderStroke());
+			g.setColor(tree.getColorTheme().getNodeBorderColor());
+			g.drawOval(x, y, diameter, diameter);
+
+			// Draw Text
+			g.setColor(tree.getColorTheme().getTextColor());
+			printSimpleString(g, tree.toString(node), diameter, x, y + diameter / 2 + 5);
 		}
 	}
 	

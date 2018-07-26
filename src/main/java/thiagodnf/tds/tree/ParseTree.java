@@ -6,6 +6,7 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import thiagodnf.tds.gui.theme.Theme;
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.node.StringNode;
 
@@ -27,6 +28,14 @@ import thiagodnf.tds.node.StringNode;
  */
 public class ParseTree extends Tree<String, Node<String>> {
 
+	public ParseTree(Theme colorTheme) {
+		super(colorTheme);
+	}
+	
+	public ParseTree() {
+		super();
+	}
+	
 	@Override
 	public Node<String> add(Node<String> node, String value) {
 

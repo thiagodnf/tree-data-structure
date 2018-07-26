@@ -2,6 +2,7 @@ package thiagodnf.tds.runner;
 
 import java.util.List;
 
+import thiagodnf.tds.gui.theme.custom.BlueTheme;
 import thiagodnf.tds.node.Node;
 import thiagodnf.tds.search.BFSSearch;
 import thiagodnf.tds.search.DFSWithInorderSearch;
@@ -23,6 +24,6 @@ public class BSTRunner extends Runner<Integer, Node<Integer>> {
 
 	@Override
 	public Tree<Integer, Node<Integer>> getTree() {
-		return new BinarySearchTree();
+		return new BinarySearchTree(new BlueTheme());
 	}
 }
