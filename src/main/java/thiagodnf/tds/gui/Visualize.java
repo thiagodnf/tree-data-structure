@@ -132,7 +132,7 @@ public class Visualize<S, T extends Node<S>> extends Canvas {
 
 			g.setColor(BLACK);
 			
-			g.drawString(tree.toString(node), x + diameter / 2 - 5, y + diameter / 2 + 5);
+			printSimpleString(g, tree.toString(node), diameter, x, y + diameter / 2+5);
 		}
 
 		if (node.hasLeftNode()) {
@@ -142,6 +142,15 @@ public class Visualize<S, T extends Node<S>> extends Canvas {
 		if (node.hasRightNode()) {
 			draw(g, node.getRightNode(), "RIGHT", x, y + (diameter * 2));
 		}
+	}
+	
+	private void printSimpleString(Graphics2D g, String s, int width, int XPos, int YPos) {
+
+		int stringLen = (int) g.getFontMetrics().getStringBounds(s, g).getWidth();
+
+		int start = width / 2 - stringLen / 2;
+
+		g.drawString(s, start + XPos, YPos);
 	}
 
 	public static void show(Tree tree) {

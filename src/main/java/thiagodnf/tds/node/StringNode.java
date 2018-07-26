@@ -17,26 +17,6 @@ public class StringNode extends Node<String> {
 
 	@Override
 	public String toString() {
-
-		if (isLeaf()) {
-			return getValue();
-		}
-
-		StringBuffer buffer = new StringBuffer();
-
-		buffer.append("[");
-		buffer.append(getValue());
-
-		if (hasLeftNode()) {
-			buffer.append(",").append(getLeftNode());
-		}
-
-		if (hasRightNode()) {
-			buffer.append(",").append(getRightNode());
-		}
-
-		buffer.append("]");
-
-		return buffer.toString();
+		return getValue();
 	}
 }
