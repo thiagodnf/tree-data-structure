@@ -8,16 +8,7 @@ public class IntegerNode extends Node<Integer> {
 
 	@Override
 	public int compareTo(Integer value) {
-
-		double diff = ((Integer) getValue()) - value;
-
-		if (diff < 0) {
-			return -1;
-		} else if (diff > 0) {
-			return 1;
-		} else {
-			return 0;
-		}
+		return Integer.compare(getValue(), value);
 	}
 
 	@Override
